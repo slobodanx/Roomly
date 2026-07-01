@@ -8,4 +8,11 @@
         CityView,
         PoolView
     }
+
+    public enum RoomType
+    {
+        Single,
+        Double,
+        Suite
+    }
 }

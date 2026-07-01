@@ -9,7 +9,7 @@ namespace Roomly.Models
         [Required]
         public required string RoomNumber { get; set; }
 
-        public required string RoomType { get; set; } // e.g., "Single", "Double", "Suite"
+        public required RoomType RoomType { get; set; } // e.g., "Single", "Double", "Suite"
         public RoomView View { get; set; } = RoomView.Standard;
 
         public int MaxOccupancy { get; set; }

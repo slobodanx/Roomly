@@ -63,18 +63,20 @@
             panel1.Controls.Add(txt_username);
             panel1.Controls.Add(label4);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(306, 0);
+            panel1.Location = new Point(389, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(325, 396);
+            panel1.Size = new Size(371, 528);
             panel1.TabIndex = 0;
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(295, 12);
+            pictureBox2.Location = new Point(337, 16);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(18, 18);
+            pictureBox2.Size = new Size(21, 24);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
@@ -83,9 +85,9 @@
             // ll_copyright
             // 
             ll_copyright.AutoSize = true;
-            ll_copyright.Location = new Point(130, 372);
+            ll_copyright.Location = new Point(149, 496);
             ll_copyright.Name = "ll_copyright";
-            ll_copyright.Size = new Size(71, 15);
+            ll_copyright.Size = new Size(87, 20);
             ll_copyright.TabIndex = 5;
             ll_copyright.TabStop = true;
             ll_copyright.Text = "COPYRIGHT";
@@ -96,9 +98,9 @@
             lbl_error.AutoSize = true;
             lbl_error.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lbl_error.ForeColor = Color.Red;
-            lbl_error.Location = new Point(43, 80);
+            lbl_error.Location = new Point(49, 107);
             lbl_error.Name = "lbl_error";
-            lbl_error.Size = new Size(0, 19);
+            lbl_error.Size = new Size(0, 23);
             lbl_error.TabIndex = 7;
             // 
             // btn_clear
@@ -106,9 +108,10 @@
             btn_clear.BackColor = Color.White;
             btn_clear.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btn_clear.ForeColor = Color.DarkSlateGray;
-            btn_clear.Location = new Point(79, 280);
+            btn_clear.Location = new Point(90, 373);
+            btn_clear.Margin = new Padding(3, 4, 3, 4);
             btn_clear.Name = "btn_clear";
-            btn_clear.Size = new Size(172, 33);
+            btn_clear.Size = new Size(197, 44);
             btn_clear.TabIndex = 4;
             btn_clear.Text = "CLEAR";
             btn_clear.UseVisualStyleBackColor = false;
@@ -119,9 +122,10 @@
             btn_login.BackColor = Color.DarkSlateGray;
             btn_login.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btn_login.ForeColor = Color.White;
-            btn_login.Location = new Point(79, 236);
+            btn_login.Location = new Point(90, 315);
+            btn_login.Margin = new Padding(3, 4, 3, 4);
             btn_login.Name = "btn_login";
-            btn_login.Size = new Size(172, 33);
+            btn_login.Size = new Size(197, 44);
             btn_login.TabIndex = 3;
             btn_login.Text = "LOGIN";
             btn_login.UseVisualStyleBackColor = false;
@@ -132,9 +136,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label6.ForeColor = Color.DarkSlateGray;
-            label6.Location = new Point(83, 159);
+            label6.Location = new Point(95, 212);
             label6.Name = "label6";
-            label6.Size = new Size(59, 15);
+            label6.Size = new Size(76, 20);
             label6.TabIndex = 4;
             label6.Text = "Password";
             // 
@@ -143,25 +147,28 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label5.ForeColor = Color.DarkSlateGray;
-            label5.Location = new Point(83, 107);
+            label5.Location = new Point(95, 143);
             label5.Name = "label5";
-            label5.Size = new Size(64, 15);
+            label5.Size = new Size(80, 20);
             label5.TabIndex = 3;
             label5.Text = "Username";
             // 
             // txt_password
             // 
-            txt_password.Location = new Point(79, 177);
+            txt_password.Location = new Point(90, 236);
+            txt_password.Margin = new Padding(3, 4, 3, 4);
             txt_password.Name = "txt_password";
-            txt_password.Size = new Size(172, 23);
+            txt_password.Size = new Size(196, 27);
             txt_password.TabIndex = 2;
             txt_password.UseSystemPasswordChar = true;
+            txt_password.KeyDown += txt_password_KeyDown;
             // 
             // txt_username
             // 
-            txt_username.Location = new Point(79, 125);
+            txt_username.Location = new Point(90, 167);
+            txt_username.Margin = new Padding(3, 4, 3, 4);
             txt_username.Name = "txt_username";
-            txt_username.Size = new Size(172, 23);
+            txt_username.Size = new Size(196, 27);
             txt_username.TabIndex = 1;
             // 
             // label4
@@ -169,9 +176,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             label4.ForeColor = Color.DarkSlateGray;
-            label4.Location = new Point(33, 36);
+            label4.Location = new Point(38, 48);
             label4.Name = "label4";
-            label4.Size = new Size(267, 32);
+            label4.Size = new Size(325, 41);
             label4.TabIndex = 0;
             label4.Text = "Login to your account";
             // 
@@ -179,20 +186,21 @@
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(82, 69);
+            pictureBox1.Location = new Point(115, 92);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(136, 136);
+            pictureBox1.Size = new Size(155, 181);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Rockwell Condensed", 30F, FontStyle.Bold);
+            label1.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(68, 221);
+            label1.Location = new Point(67, 297);
             label1.Name = "label1";
-            label1.Size = new Size(159, 47);
+            label1.Size = new Size(248, 58);
             label1.TabIndex = 2;
             label1.Text = "ROOMLY";
             // 
@@ -201,9 +209,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(15, 279);
+            label2.Location = new Point(21, 373);
             label2.Name = "label2";
-            label2.Size = new Size(278, 19);
+            label2.Size = new Size(344, 23);
             label2.TabIndex = 3;
             label2.Text = "Hotel Reservation and Management System";
             // 
@@ -211,28 +219,29 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.White;
-            label3.Location = new Point(116, 372);
+            label3.Location = new Point(143, 496);
             label3.Name = "label3";
-            label3.Size = new Size(60, 15);
+            label3.Size = new Size(77, 20);
             label3.TabIndex = 4;
             label3.Text = "FCSE 2026";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateGray;
-            ClientSize = new Size(631, 396);
+            ClientSize = new Size(760, 528);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Login";
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

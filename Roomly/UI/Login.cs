@@ -82,5 +82,24 @@ namespace Roomly
                 throw new Exception("pictureBox2_Click", ex);
             }
         }
+
+        private void txt_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    // Trigger your existing login method
+                    btn_login_Click(sender, e);
+
+                    // Optional: Suppress the "ding" sound that Windows makes on Enter
+                    e.SuppressKeyPress = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("txt_password_KeyDown", ex);
+            }
+        }
     }
 }
