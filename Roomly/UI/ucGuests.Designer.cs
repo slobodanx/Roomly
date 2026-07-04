@@ -64,6 +64,7 @@
             btnSave = new Button();
             groupBox4 = new GroupBox();
             txtDescription = new TextBox();
+            btnAssign = new Button();
             groupBox2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -349,6 +350,7 @@
             tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 0);
             tableLayoutPanel1.Controls.Add(dgvGuests, 0, 1);
             tableLayoutPanel1.Controls.Add(pnlDetails, 1, 1);
+            tableLayoutPanel1.Controls.Add(btnAssign, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -408,6 +410,7 @@
             dgvGuests.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvGuests.Size = new Size(474, 543);
             dgvGuests.TabIndex = 1;
+            dgvGuests.DataBindingComplete += dgvGuests_DataBindingComplete;
             dgvGuests.SelectionChanged += dgvGuests_SelectionChanged;
             // 
             // pnlDetails
@@ -509,6 +512,24 @@
             txtDescription.Size = new Size(308, 60);
             txtDescription.TabIndex = 12;
             // 
+            // btnAssign
+            // 
+            btnAssign.Anchor = AnchorStyles.None;
+            btnAssign.BackColor = Color.DarkSlateGray;
+            btnAssign.FlatAppearance.BorderColor = Color.DarkSlateGray;
+            btnAssign.FlatAppearance.BorderSize = 0;
+            btnAssign.FlatAppearance.MouseDownBackColor = Color.CadetBlue;
+            btnAssign.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAssign.ForeColor = Color.White;
+            btnAssign.Location = new Point(565, 5);
+            btnAssign.Name = "btnAssign";
+            btnAssign.Size = new Size(150, 40);
+            btnAssign.TabIndex = 14;
+            btnAssign.Text = "ASSIGN";
+            btnAssign.UseVisualStyleBackColor = false;
+            btnAssign.Visible = false;
+            btnAssign.Click += btnAssign_Click;
+            // 
             // ucGuests
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -572,5 +593,6 @@
         private Label label8;
         private Label label9;
         private Label label10;
+        private Button btnAssign;
     }
 }

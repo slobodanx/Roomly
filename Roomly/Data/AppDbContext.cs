@@ -30,6 +30,16 @@ namespace Roomly.Data
                 .HasOne(u => u.Role)
                 .WithMany(r => r.Users)
                 .HasForeignKey(u => u.RoleId);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Guest)
+                .WithMany(g => g.Reservations)
+                .HasForeignKey(r => r.GuestId);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(r => r.Room)
+                .WithMany(room => room.Reservations)
+                .HasForeignKey(r => r.RoomId);
         }
     }
 }

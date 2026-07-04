@@ -53,13 +53,8 @@ namespace Roomly.UI
         {
             try
             {
-                using (var db = new Roomly.Data.AppDbContext())
-                {
-                    var service = new Roomly.Services.ReservationService(db);
-
-                    dgvArrivals.DataSource = service.GetTodayArrivals();
-                    dgvDepartures.DataSource = service.GetTodayDepartures();
-                }
+                dgvArrivals.DataSource = Services.ReservationService.GetTodayArrivals();
+                dgvDepartures.DataSource = Services.ReservationService.GetTodayDepartures();
             }
             catch (Exception ex)
             {
@@ -79,6 +74,16 @@ namespace Roomly.UI
             {
                 throw new Exception("ucDashboard_Load", ex);
             }
+        }
+
+        private void dgvArrivals_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvArrivals.ClearSelection();
+        }
+
+        private void dgvDepartures_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvDepartures.ClearSelection();
         }
     }
 }

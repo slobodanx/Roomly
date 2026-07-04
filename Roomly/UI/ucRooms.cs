@@ -5,9 +5,11 @@ namespace Roomly.UI
     public partial class ucRooms : UserControl
     {
         private BindingSource roomBindingSource = new BindingSource();
-        public ucRooms()
+        public Room SelectedRoom { get; private set; }
+        public ucRooms(bool isStandalone = true)
         {
             InitializeComponent();
+            btnAssign.Visible = !isStandalone;
             cmbRoomType.DataSource = Enum.GetValues(typeof(RoomType));
             cmbRoomView.DataSource = Enum.GetValues(typeof(RoomView));
 
@@ -33,6 +35,7 @@ namespace Roomly.UI
                 dgvRooms.Columns["HasWifi"]!.Visible = false;
                 dgvRooms.Columns["IncludesMeals"]!.Visible = false;
                 dgvRooms.Columns["Description"]!.Visible = false;
+                dgvRooms.Columns["Reservations"]!.Visible = false;
 
                 dgvRooms.Columns["RoomNumber"]!.HeaderText = "Number";
                 dgvRooms.Columns["RoomType"]!.HeaderText = "Type";
@@ -41,6 +44,7 @@ namespace Roomly.UI
                 dgvRooms.Columns["CreatedAt"]!.HeaderText = "Created at";
 
                 dgvRooms.ClearSelection();
+                ResetForm();
             }
             catch (Exception ex)
             {
@@ -181,6 +185,14 @@ namespace Roomly.UI
                 if (dgvRooms.SelectedRows.Count > 0)
                 {
                     var selectedRoom = (Room)dgvRooms.SelectedRows[0].DataBoundItem!;
+
+                    // 1. Perform the validation check before asking for confirmation
+                    if (!RoomService.CanDeleteRoom(selectedRoom.Id))
+                    {
+                        MessageBox.Show("This room cannot be deleted because it is associated with existing reservations.",
+                                        "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
 
                     var confirm = MessageBox.Show("Are you sure you want to delete this room?",
                         "Confirm Delete", MessageBoxButtons.YesNo);
@@ -335,5 +347,47 @@ namespace Roomly.UI
 
         }
 
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Verify that a record is actually selected
+                if (dgvRooms.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a room from the list first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Add a confirmation message
+                var selectedRoom = (Room)dgvRooms.SelectedRows[0].DataBoundItem!;
+                var result = MessageBox.Show($"Are you sure you want to assign Room {selectedRoom.RoomNumber}?",
+                                             "Confirm Assignment",
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Finalize the selection and close
+                    SelectedRoom = selectedRoom;
+
+                    if (this.ParentForm != null)
+                    {
+                        this.ParentForm.DialogResult = DialogResult.OK;
+                        this.ParentForm.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ClearError_Event", ex);
+            }
+
+        }
+
+        private void dgvRooms_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvRooms.ClearSelection();
+            ResetForm();
+        }
     }
 }

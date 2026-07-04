@@ -17,21 +17,25 @@ namespace Roomly.UI
         private void txt_dashboard_Click(object sender, EventArgs e)
         {
             LoadUserControl(new ucDashboard());
+            this.Text = "Hotel Reservation and Management System > Dashboard";
         }
 
         private void btn_rooms_Click(object sender, EventArgs e)
         {
             LoadUserControl(new ucRooms());
+            this.Text = "Hotel Reservation and Management System > Rooms";
         }
 
         private void txt_reservations_Click(object sender, EventArgs e)
         {
             LoadUserControl(new ucReservations());
+            this.Text = "Hotel Reservation and Management System > Reservations";
         }
 
         private void txt_guests_Click(object sender, EventArgs e)
         {
             LoadUserControl(new ucGuests());
+            this.Text = "Hotel Reservation and Management System > Guests";
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {

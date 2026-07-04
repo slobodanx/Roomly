@@ -6,10 +6,12 @@ namespace Roomly.UI
     public partial class ucGuests : UserControl
     {
         private BindingSource guestBindingSource = new BindingSource();
+        public Guest SelectedGuest { get; private set; }
 
-        public ucGuests()
+        public ucGuests(bool isStandalone = true)
         {
             InitializeComponent();
+            btnAssign.Visible = !isStandalone;
             dgvGuests.DataSource = guestBindingSource;
             LoadGuests();
         }
@@ -48,6 +50,7 @@ namespace Roomly.UI
                 dgvGuests.Columns["CreatedAt"]!.DisplayIndex = 3;
 
                 dgvGuests.ClearSelection();
+                ResetForm();
             }
             catch (Exception ex)
             {
@@ -152,6 +155,13 @@ namespace Roomly.UI
                 if (dgvGuests.SelectedRows.Count > 0)
                 {
                     var selectedGuest = (Guest)dgvGuests.SelectedRows[0].DataBoundItem!;
+
+                    if (!GuestService.CanDeleteGuest(selectedGuest.Id))
+                    {
+                        MessageBox.Show("This guest cannot be deleted because they have active or past reservations.",
+                                        "Deletion Blocked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
 
                     var confirm = MessageBox.Show("Are you sure you want to delete this guest?",
                         "Confirm Delete", MessageBoxButtons.YesNo);
@@ -291,6 +301,48 @@ namespace Roomly.UI
                 throw new Exception("ClearError_Event", ex);
             }
 
+        }
+
+        private void btnAssign_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Verify that a record is actually selected
+                if (dgvGuests.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a guest from the list first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Add a confirmation message
+                var selectedGuest = (Guest)dgvGuests.SelectedRows[0].DataBoundItem!;
+                var result = MessageBox.Show($"Are you sure you want to assign {selectedGuest.FullName}?",
+                                             "Confirm Assignment",
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Finalize the selection and close
+                    SelectedGuest = selectedGuest;
+
+                    if (this.ParentForm != null)
+                    {
+                        this.ParentForm.DialogResult = DialogResult.OK;
+                        this.ParentForm.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("btnAssign_Click", ex);
+            }
+        }
+
+        private void dgvGuests_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvGuests.ClearSelection();
+            ResetForm();
         }
     }
 }

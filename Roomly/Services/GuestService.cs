@@ -69,6 +69,9 @@ namespace Roomly.Services
 
         public static void DeleteGuest(int guestId)
         {
+            if (!CanDeleteGuest(guestId))
+                throw new InvalidOperationException("Cannot delete: Guest is associated with existing reservations.");
+
             using (var context = new AppDbContext())
             {
                 var guest = context.Guests.Find(guestId);
@@ -90,6 +93,20 @@ namespace Roomly.Services
                                 g.FirstName.ToLower().Contains(term) ||
                                 g.LastName.ToLower().Contains(term))
                     .ToList();
+            }
+        }
+
+        public static bool CanDeleteGuest(int guestId)
+        {
+            using (var context = new AppDbContext())
+            {
+                // Include the Reservations navigation property
+                var guest = context.Guests
+                                   .Include(g => g.Reservations)
+                                   .FirstOrDefault(g => g.Id == guestId);
+
+                // Can delete if guest doesn't exist or has no reservations
+                return guest == null || guest.Reservations.Count == 0;
             }
         }
     }

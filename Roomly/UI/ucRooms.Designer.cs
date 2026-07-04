@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
+            btnAssign = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
             label1 = new Label();
             txtSearch = new TextBox();
@@ -87,6 +88,7 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+            tableLayoutPanel1.Controls.Add(btnAssign, 1, 0);
             tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 0);
             tableLayoutPanel1.Controls.Add(dgvRooms, 0, 1);
             tableLayoutPanel1.Controls.Add(pnlDetails, 1, 1);
@@ -98,6 +100,24 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(800, 600);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // btnAssign
+            // 
+            btnAssign.Anchor = AnchorStyles.None;
+            btnAssign.BackColor = Color.DarkSlateGray;
+            btnAssign.FlatAppearance.BorderColor = Color.DarkSlateGray;
+            btnAssign.FlatAppearance.BorderSize = 0;
+            btnAssign.FlatAppearance.MouseDownBackColor = Color.CadetBlue;
+            btnAssign.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAssign.ForeColor = Color.White;
+            btnAssign.Location = new Point(565, 5);
+            btnAssign.Name = "btnAssign";
+            btnAssign.Size = new Size(150, 40);
+            btnAssign.TabIndex = 15;
+            btnAssign.Text = "ASSIGN";
+            btnAssign.UseVisualStyleBackColor = false;
+            btnAssign.Visible = false;
+            btnAssign.Click += btnAssign_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -149,6 +169,7 @@
             dgvRooms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRooms.Size = new Size(474, 543);
             dgvRooms.TabIndex = 1;
+            dgvRooms.DataBindingComplete += dgvRooms_DataBindingComplete;
             dgvRooms.SelectionChanged += dgvRooms_SelectionChanged;
             // 
             // pnlDetails
@@ -607,5 +628,6 @@
         private ComboBox cmbRoomView;
         private NumericUpDown numMaxOccupancy;
         private ErrorProvider errProvider;
+        private Button btnAssign;
     }
 }
