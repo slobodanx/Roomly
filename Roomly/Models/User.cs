@@ -18,5 +18,7 @@ namespace Roomly.Models
         // Foreign key to Role
         public int RoleId { get; set; } = 1;
         public Role? Role { get; set; }     // e.g., "Admin", "Receptionist"
+
+        public bool IsActive { get; set; } = false;
     }
 }

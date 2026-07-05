@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Roomly.UI;
+
 namespace Roomly
 {
     internal static class Program
@@ -14,22 +17,35 @@ namespace Roomly
 
             using (var context = new Roomly.Data.AppDbContext())
             {
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
 
-                // Check if Admin exists, if not, create it
-                if (!context.Users.Any(u => u.Username == "admin"))
+                if (!context.Users.Any())
                 {
-                    context.Users.Add(new Roomly.Models.User
+                    using (var setup = new Register(true))
                     {
-                        Username = "admin",
-                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin"),
-                        RoleId = 1
-                    });
-                    context.SaveChanges();
+                        if (setup.ShowDialog() != DialogResult.OK) return;
+                    }
+                }
+
+                // Keep the application running in a loop
+                bool loggedIn = true;
+                while (loggedIn)
+                {
+                    using (var login = new Login())
+                    {
+                        if (login.ShowDialog() == DialogResult.OK)
+                        {
+                            // Run the main form and wait for it to close
+                            Application.Run(new MainForm(login.LoggedInUser!));
+                        }
+                        else
+                        {
+                            // If login is cancelled, exit the loop and app
+                            break;
+                        }
+                    }
                 }
             }
-
-            Application.Run(new Login());
         }
     }
 }

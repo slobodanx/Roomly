@@ -5,6 +5,7 @@ namespace Roomly
 {
     public partial class Login : Form
     {
+        public Models.User? LoggedInUser { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -15,19 +16,18 @@ namespace Roomly
             try
             {
                 var userService = new UserService();
-                var loggedInUser = userService.Authenticate(txt_username.Text, txt_password.Text);
+                var result = userService.Authenticate(txt_username.Text, txt_password.Text);
 
-                if (loggedInUser != null)
+                if (result.Success)
                 {
-                    // Success: Navigate to next form
-                    var main_form = new MainForm(loggedInUser);
-                    main_form.Show();
-                    this.Hide();
+                    this.DialogResult = DialogResult.OK;
+                    this.LoggedInUser = result.User;
+                    this.Close();
                 }
                 else
                 {
                     // Failure: Show error
-                    MessageBox.Show("Invalid username or password.");
+                    MessageBox.Show(result.Message, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -36,12 +36,16 @@ namespace Roomly
             }
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
+        private void btn_signup_Click(object sender, EventArgs e)
         {
             try
             {
-                txt_username.Text = "";
-                txt_password.Text = "";
+                this.Hide();
+                using (Register regForm = new Register())
+                {
+                    regForm.ShowDialog();
+                }
+                this.Show();
             }
             catch (Exception ex)
             {
@@ -75,7 +79,7 @@ namespace Roomly
         {
             try
             {
-                Application.Exit();
+                this.DialogResult = DialogResult.Cancel;
             }
             catch (Exception ex)
             {

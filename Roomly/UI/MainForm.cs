@@ -6,6 +6,8 @@ namespace Roomly.UI
         public MainForm(Models.User user)
         {
             InitializeComponent();
+            //menu visible only for admin role
+            btnAdminMenu.Visible = (user.RoleId == 1);
         }
         private void LoadUserControl(UserControl uc)
         {
@@ -39,10 +41,20 @@ namespace Roomly.UI
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Login loginForm = new Login();
-            loginForm.ShowDialog();
-            this.Close();
+            var confirm = MessageBox.Show("Are you sure you want to log out?",
+                                  "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                // Simply closing the form now returns control to the loop in Program.cs
+                this.Close();
+            }
+        }
+
+        private void btnAdminMenu_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new ucAdminDashboard());
+            this.Text = "Hotel Reservation and Management System > Admin Dashboard";
         }
     }
 }

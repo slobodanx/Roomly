@@ -40,6 +40,7 @@
             btn_rooms = new Button();
             txt_guests = new Button();
             pnl_container = new Panel();
+            btnAdminMenu = new Button();
             pnlContent.SuspendLayout();
             pnl_header.SuspendLayout();
             pnl_footer.SuspendLayout();
@@ -119,6 +120,7 @@
             pnl_sidebar.Controls.Add(txt_reservations);
             pnl_sidebar.Controls.Add(btn_rooms);
             pnl_sidebar.Controls.Add(txt_guests);
+            pnl_sidebar.Controls.Add(btnAdminMenu);
             pnl_sidebar.FlowDirection = FlowDirection.TopDown;
             pnl_sidebar.Location = new Point(11, 107);
             pnl_sidebar.Margin = new Padding(3, 4, 3, 4);
@@ -201,6 +203,22 @@
             pnl_container.Size = new Size(894, 632);
             pnl_container.TabIndex = 1;
             // 
+            // btnAdminMenu
+            // 
+            btnAdminMenu.FlatAppearance.BorderSize = 0;
+            btnAdminMenu.FlatAppearance.MouseDownBackColor = Color.CadetBlue;
+            btnAdminMenu.FlatStyle = FlatStyle.Flat;
+            btnAdminMenu.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnAdminMenu.ForeColor = Color.White;
+            btnAdminMenu.Location = new Point(3, 261);
+            btnAdminMenu.Margin = new Padding(3, 4, 3, 4);
+            btnAdminMenu.Name = "btnAdminMenu";
+            btnAdminMenu.Size = new Size(201, 53);
+            btnAdminMenu.TabIndex = 4;
+            btnAdminMenu.Text = "Admin Dashboard";
+            btnAdminMenu.UseVisualStyleBackColor = true;
+            btnAdminMenu.Click += btnAdminMenu_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -235,5 +253,6 @@
         private FlowLayoutPanel pnl_header;
         private Label label1;
         private Panel pnl_container;
+        private Button btnAdminMenu;
     }
 }

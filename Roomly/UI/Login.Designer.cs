@@ -33,7 +33,7 @@
             pictureBox2 = new PictureBox();
             ll_copyright = new LinkLabel();
             lbl_error = new Label();
-            btn_clear = new Button();
+            btn_signup = new Button();
             btn_login = new Button();
             label6 = new Label();
             label5 = new Label();
@@ -55,7 +55,7 @@
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(ll_copyright);
             panel1.Controls.Add(lbl_error);
-            panel1.Controls.Add(btn_clear);
+            panel1.Controls.Add(btn_signup);
             panel1.Controls.Add(btn_login);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
@@ -103,19 +103,19 @@
             lbl_error.Size = new Size(0, 23);
             lbl_error.TabIndex = 7;
             // 
-            // btn_clear
+            // btn_signup
             // 
-            btn_clear.BackColor = Color.White;
-            btn_clear.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btn_clear.ForeColor = Color.DarkSlateGray;
-            btn_clear.Location = new Point(90, 373);
-            btn_clear.Margin = new Padding(3, 4, 3, 4);
-            btn_clear.Name = "btn_clear";
-            btn_clear.Size = new Size(197, 44);
-            btn_clear.TabIndex = 4;
-            btn_clear.Text = "CLEAR";
-            btn_clear.UseVisualStyleBackColor = false;
-            btn_clear.Click += btn_clear_Click;
+            btn_signup.BackColor = Color.White;
+            btn_signup.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn_signup.ForeColor = Color.DarkSlateGray;
+            btn_signup.Location = new Point(90, 373);
+            btn_signup.Margin = new Padding(3, 4, 3, 4);
+            btn_signup.Name = "btn_signup";
+            btn_signup.Size = new Size(197, 44);
+            btn_signup.TabIndex = 4;
+            btn_signup.Text = "SIGN UP";
+            btn_signup.UseVisualStyleBackColor = false;
+            btn_signup.Click += btn_signup_Click;
             // 
             // btn_login
             // 
@@ -264,7 +264,7 @@
         private Label label5;
         private TextBox txt_password;
         private TextBox txt_username;
-        private Button btn_clear;
+        private Button btn_signup;
         private Label lbl_error;
         private LinkLabel ll_copyright;
         private PictureBox pictureBox2;
