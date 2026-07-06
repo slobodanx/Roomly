@@ -153,7 +153,7 @@ namespace Roomly.UI
                 BasePrice = basePrice,
                 Status = (ReservationStatus)cmbStatus.SelectedItem!,
                 DiscountType = (DiscountType)cmbDiscountType.SelectedItem!,
-                DiscountValue = discountValue,
+                DiscountValue = numDiscountValue.Value,
                 Note = txtDescription.Text
             };
 
